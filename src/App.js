@@ -7,7 +7,8 @@ import { useState } from 'react';
 function App() {
   let post = "food";
   let[a, b] = useState(['spagetti','coke','apple','banana']);
-  let[likeCount, lc]= useState(0);
+  let[likeCount, lc]= useState([0,0,0,0]);
+  
   let [modal, setModal] = useState(false);
   return (
     <div className="App">
@@ -15,6 +16,18 @@ function App() {
           <h4>BLOG</h4>
         </div>
         <h4 style={{color : 'red', fontSize : '32px'}}>{post}</h4>
+        <button onClick={()=>{
+          let copy = [...a];
+          copy[0] = 'lemonade';
+          b(copy);
+          }}>변경
+        </button>
+        <button onClick={()=>{
+          let sortCopy = [...a];
+          sortCopy.sort();
+          b(sortCopy);
+        }}>정렬
+        </button>
         {/* <button onClick={()=>{
           let copy = [...a];
           copy[0] = 'lemonade';
@@ -41,7 +54,11 @@ function App() {
           a.map(function(each,i){
             return (
               <div className='list' key={i}>
-              <h4 onClick={()=>{setModal(!modal)}}>{each}<span onClick={()=>{lc(likeCount+1)}}> 좋아요</span> {likeCount} </h4>
+              <h4 onClick={()=>{setModal(!modal)}}>{each} </h4><span onClick={()=>{
+                let copy = [...likeCount];
+                copy[i]+=1;
+                lc(copy);
+              }}> 좋아요</span> {likeCount[i]}
               <p>5월 11일</p>
             </div>
             )
