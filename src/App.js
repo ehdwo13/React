@@ -9,6 +9,7 @@ function App() {
   let[a, b] = useState(['spagetti','coke','apple','banana']);
   let[likeCount, lc]= useState([0,0,0,0]);
   
+  
   let [modal, setModal] = useState(false);
   return (
     <div className="App">
